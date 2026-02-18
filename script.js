@@ -4,6 +4,8 @@
 const splash = document.getElementById("splash");
 const whatsButton = document.getElementById("whatsButton");
 
+let auto = false; // só ativa depois da splash
+
 splash.addEventListener("click", () => {
   splash.style.opacity = "0";
 
@@ -23,7 +25,6 @@ splash.addEventListener("click", () => {
 // =========================
 const slides = document.querySelectorAll(".slide");
 let index = 0;
-let auto = false; // só ativa após splash
 
 function showSlide(i){
   slides.forEach(s => s.classList.remove("active"));
@@ -74,34 +75,4 @@ setInterval(nextSlide, 6000);
 // =========================
 let scrollTimeout;
 
-window.addEventListener("wheel", (event) => {
-  auto = false;
-  clearTimeout(scrollTimeout);
-
-  scrollTimeout = setTimeout(() => {
-    if (event.deltaY > 0) {
-      index = (index + 1) % slides.length;
-    } else {
-      index = (index - 1 + slides.length) % slides.length;
-    }
-    showSlide(index);
-  }, 80);
-});
-
-// =========================
-// LOGO NAVBAR → VOLTAR AO SLIDE 0
-// =========================
-document.getElementById("logoNav").addEventListener("click", () => {
-  auto = false;
-  index = 0;
-  showSlide(0);
-});
-
-// =========================
-// Hiperlink direto para slide
-// =========================
-function goToSlide(n){
-  auto = false;
-  index = n;
-  showSlide(index);
-}
+window.addEventListener("wheel", (event
