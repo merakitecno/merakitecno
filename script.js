@@ -28,8 +28,14 @@ let index = 0;
 
 // aplica as imagens de fundo com base no data-bg
 slides.forEach(slide => {
-  const bg = slide.getAttribute("data-bg");
+  let bg = slide.getAttribute("data-bg");
+
   if (bg) {
+    // garante que a URL do Unsplash funcione
+    if (!bg.includes("?")) {
+      bg += "?auto=format&fit=crop&w=1920&q=80";
+    }
+
     slide.style.backgroundImage = `url('${bg}')`;
   }
 });
@@ -68,7 +74,7 @@ function updateIndicators(){
 }
 
 // =========================
-/* AUTOMÁTICO */
+// AUTOMÁTICO
 // =========================
 function nextSlide(){
   if(!auto) return;
@@ -107,7 +113,7 @@ document.getElementById("logoNav").addEventListener("click", () => {
 });
 
 // =========================
-// Hiperlink direto para slide (se quiser usar no HTML)
+// Hiperlink direto para slide
 // =========================
 function goToSlide(n){
   auto = false;
