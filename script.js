@@ -8,6 +8,21 @@ splash.addEventListener("click", () => {
     auto = true; // ativa o automático só depois da splash
   }, 600);
 });
+// MOSTRAR BOTÃO DO WHATSAPP APÓS A SPLASH
+const whatsButton = document.getElementById("whatsButton");
+
+splash.addEventListener("click", () => {
+  splash.style.opacity = "0";
+  setTimeout(() => {
+    splash.style.display = "none";
+    auto = true;
+
+    // Exibe o botão
+    whatsButton.style.opacity = "1";
+    whatsButton.style.pointerEvents = "auto";
+
+  }, 600);
+});
 
 // --- SLIDES ---
 const slides = document.querySelectorAll(".slide");
