@@ -1,247 +1,122 @@
-/* =========================
-   RESET
-========================= */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+// =========================
+// SPLASH
+// =========================
+const splash = document.getElementById("splash");
+const whatsButton = document.getElementById("whatsButton");
 
-body{
-  overflow:hidden;
-  background:linear-gradient(to bottom, #C7CBD1, #B9BEC5); /* CINZA INDUSTRIAL ESCURO PREMIUM */
-  color:#374151;
-  font-family:'Inter', sans-serif;
-}
+let auto = false; // só ativa depois da splash
 
-/* =========================
-   SPLASH
-========================= */
-#splash{
-  position:fixed;
-  inset:0;
-  background:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:999999;
-  cursor:pointer;
-  transition:opacity .6s ease;
-}
+splash.addEventListener("click", () => {
+  splash.style.opacity = "0";
 
-.splash-logo{
-  width:360px;
-  max-width:75vw;
-  opacity:0;
-  animation:fadeIn 1.5s forwards;
-  filter:drop-shadow(0 6px 14px rgba(0,0,0,0.18));
-  transform:perspective(700px) rotateX(6deg);
-}
+  setTimeout(() => {
+    splash.style.display = "none";
+    auto = true;
 
-.splash-text{
-  margin-top:28px;
-  font-size:22px;
-  color:#1A73E8;
-  opacity:0;
-  animation:fadeIn 2.5s forwards;
-}
+    // Exibe o botão do WhatsApp
+    whatsButton.style.opacity = "1";
+    whatsButton.style.pointerEvents = "auto";
+    whatsButton.style.zIndex = "9000";
+  }, 600);
+});
 
-@keyframes fadeIn{
-  to{opacity:1;}
-}
+// =========================
+// SLIDES
+// =========================
+const slides = document.querySelectorAll(".slide");
+let index = 0;
 
-/* =========================
-   NAVBAR
-========================= */
-.navbar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:72px;
-  display:flex;
-  align-items:center;
-  padding:0 28px;
-  z-index:100;
-  background:#FFFFFFE6;
-  backdrop-filter:blur(10px);
-  box-shadow:0 2px 8px rgba(0,0,0,0.06);
-}
+// aplica as imagens de fundo com base no data-bg
+slides.forEach(slide => {
+  let bg = slide.getAttribute("data-bg");
 
-#logoNav{
-  height:48px;
-  transition:transform .35s ease, filter .35s ease;
-  filter:drop-shadow(0 3px 6px rgba(0,0,0,0.18));
-}
+  if (bg) {
+    // garante que a URL do Unsplash funcione
+    if (!bg.includes("?")) {
+      bg += "?auto=format&fit=crop&w=1920&q=80";
+    }
 
-#logoNav:hover{
-  transform:perspective(600px) rotateX(8deg) scale(1.04);
-  filter:drop-shadow(0 8px 16px rgba(0,0,0,0.28));
-}
-
-/* =========================
-   WHATSAPP BUTTON
-========================= */
-#whatsButton{
-  position:fixed;
-  bottom:28px;
-  right:28px;
-  width:64px;
-  height:64px;
-  background:#25D366;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.25);
-  z-index:1;
-  cursor:pointer;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .5s ease, transform .3s ease;
-}
-
-#whatsButton:hover{
-  transform:scale(1.12);
-}
-
-#whatsButton img{
-  width:34px;
-  height:34px;
-}
-
-/* =========================
-   SLIDES
-========================= */
-#slides-container{
-  position:relative;
-  width:100%;
-  height:100vh;
-  overflow:hidden;
-}
-
-.slide{
-  position:absolute;
-  inset:0;
-  padding:120px 60px;
-  opacity:0;
-  transition:opacity .6s ease;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-
-  /* IMAGEM DE FUNDO DINÂMICA */
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-
-  /* OVERLAY TÉCNICO PARA LEITURA */
-  box-shadow:inset 0 0 0 2000px rgba(15, 27, 43, 0.45);
-}
-
-/* =========================
-   MARCA D'ÁGUA PREMIUM
-========================= */
-.slide::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url('logo-meraki.png') center/45% no-repeat;
-  opacity:0.18; /* MAIS APARENTE */
-  filter:blur(0.5px) brightness(0.85);
-  z-index:-1;
-}
-
-.slide.active{
-  opacity:1;
-}
-
-/* =========================
-   TIPOGRAFIA INDUSTRIAL
-========================= */
-h1{
-  font-family:'Space Grotesk', sans-serif;
-  font-size:52px;
-  margin-bottom:22px;
-  color:#F9FAFB; /* quase branco, contraste perfeito */
-  font-weight:700;
-  letter-spacing:-0.5px;
-  text-shadow:0 2px 6px rgba(0,0,0,0.35);
-}
-
-p, li{
-  font-size:22px;
-  line-height:1.55;
-  color:#E5E7EB;
-  font-weight:400;
-  text-shadow:0 1px 4px rgba(0,0,0,0.35);
-}
-
-ul{
-  margin-left:22px;
-}
-
-/* =========================
-   INDICADORES
-========================= */
-#indicators{
-  position:fixed;
-  bottom:42px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:12px;
-  z-index:50;
-}
-
-.indicator{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  background:#C5CBD3;
-  cursor:pointer;
-  transition:0.25s ease;
-}
-
-.indicator:hover{
-  transform:scale(1.25);
-  background:#1A73E8AA;
-}
-
-.indicator.active{
-  background:#1A73E8;
-  transform:scale(1.35);
-}
-
-/* =========================
-   RESPONSIVO
-========================= */
-@media(max-width:768px){
-
-  .splash-logo{
-    width:260px;
+    slide.style.backgroundImage = `url('${bg}')`;
   }
+});
 
-  h1{
-    font-size:34px;
-  }
+function showSlide(i){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[i].classList.add("active");
+  updateIndicators();
+}
 
-  p, li{
-    font-size:18px;
-  }
+showSlide(index);
 
-  .slide{
-    padding:100px 28px;
-  }
+// =========================
+// INDICADORES
+// =========================
+const indicatorsContainer = document.getElementById("indicators");
 
-  #whatsButton{
-    width:56px;
-    height:56px;
-  }
+slides.forEach((_, i) => {
+  const dot = document.createElement("div");
+  dot.classList.add("indicator");
 
-  #whatsButton img{
-    width:30px;
-    height:30px;
-  }
+  dot.addEventListener("click", () => {
+    auto = false;
+    index = i;
+    showSlide(index);
+  });
+
+  indicatorsContainer.appendChild(dot);
+});
+
+function updateIndicators(){
+  const dots = document.querySelectorAll(".indicator");
+  dots.forEach((d, i) => {
+    d.classList.toggle("active", i === index);
+  });
+}
+
+// =========================
+// AUTOMÁTICO
+// =========================
+function nextSlide(){
+  if(!auto) return;
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+setInterval(nextSlide, 6000);
+
+// =========================
+// SCROLL
+// =========================
+let scrollTimeout;
+
+window.addEventListener("wheel", (event) => {
+  auto = false;
+  clearTimeout(scrollTimeout);
+
+  scrollTimeout = setTimeout(() => {
+    if (event.deltaY > 0) {
+      index = (index + 1) % slides.length;
+    } else {
+      index = (index - 1 + slides.length) % slides.length;
+    }
+    showSlide(index);
+  }, 80);
+});
+
+// =========================
+// LOGO NAVBAR → VOLTAR AO SLIDE 0
+// =========================
+document.getElementById("logoNav").addEventListener("click", () => {
+  auto = false;
+  index = 0;
+  showSlide(0);
+});
+
+// =========================
+// Hiperlink direto para slide
+// =========================
+function goToSlide(n){
+  auto = false;
+  index = n;
+  showSlide(index);
 }
