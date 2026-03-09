@@ -55,15 +55,15 @@ const letters = ["M", "E", "R", "A", "K", "I"];
 
 slides.forEach((_, i) => {
   const dot = document.createElement("div");
-  dot.classList.add("indicator");
 
-  // Se existir letra, usa; se não, deixa vazio
+  // Se existir letra → marcador com letra
   const letter = letters[i] || "";
-  dot.textContent = letter;
 
-  // Se não tiver letra → marcador padrão Meraki
-  if (letter === "") {
-    dot.classList.add("indicator-default");
+  if (letter !== "") {
+    dot.classList.add("indicator"); // marcador médio
+    dot.textContent = letter;
+  } else {
+    dot.classList.add("indicator-default"); // marcador pequeno
   }
 
   dot.addEventListener("click", () => {
