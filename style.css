@@ -72,7 +72,7 @@ body{
 
 
 #logoNav{
-  height:72px; /* tamanho maior que você pediu */
+  height:85px; /* tamanho maior que você pediu */
   position:relative;
   z-index:99999; /* garante que o clique funcione */
   cursor:pointer;
