@@ -4,7 +4,7 @@
 const splash = document.getElementById("splash");
 const whatsButton = document.getElementById("whatsButton");
 
-let auto = false; // só ativa depois da splash
+let auto = false;
 
 splash.addEventListener("click", () => {
   splash.style.opacity = "0";
@@ -13,7 +13,6 @@ splash.addEventListener("click", () => {
     splash.style.display = "none";
     auto = true;
 
-    // Exibe o botão do WhatsApp
     whatsButton.style.opacity = "1";
     whatsButton.style.pointerEvents = "auto";
     whatsButton.style.zIndex = "9000";
@@ -31,11 +30,9 @@ slides.forEach(slide => {
   let bg = slide.getAttribute("data-bg");
 
   if (bg) {
-    // garante que a URL do Unsplash funcione
     if (!bg.includes("?")) {
       bg += "?auto=format&fit=crop&w=1920&q=80";
     }
-
     slide.style.backgroundImage = `url('${bg}')`;
   }
 });
