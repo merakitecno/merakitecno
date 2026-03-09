@@ -40,33 +40,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // =========================
-  // INDICADORES MERAKI
-  // =========================
-  const indicatorsContainer = document.getElementById("indicators");
-  const letters = ["M", "E", "R", "A", "K", "I"];
-  const indicators = [];
+// =========================
+// INDICADORES: 2 vazios + MERAKI + 2 vazios
+// =========================
+const indicatorsContainer = document.getElementById("indicators");
+const pattern = ["", "", "M", "E", "R", "A", "K", "I", "", ""];
+const indicators = [];
 
-  slides.forEach((_, i) => {
-    const dot = document.createElement("div");
+pattern.forEach((char, i) => {
+  const dot = document.createElement("div");
 
-    if (i < letters.length) {
-      dot.classList.add("indicator");
-      dot.textContent = letters[i];
-    } else {
-      dot.classList.add("indicator-default");
-    }
+  if (char === "") {
+    dot.classList.add("indicator-default");
+  } else {
+    dot.classList.add("indicator");
+    dot.textContent = char;
+  }
 
-    indicators.push(dot);
+  indicators.push(dot);
 
-    dot.addEventListener("click", () => {
-      auto = false;
-      index = i;
-      showSlide(index);
-    });
-
-    indicatorsContainer.appendChild(dot);
+  dot.addEventListener("click", () => {
+    auto = false;
+    index = i;
+    showSlide(index);
   });
+
+  indicatorsContainer.appendChild(dot);
+});
+
 
 
   function updateIndicators() {
