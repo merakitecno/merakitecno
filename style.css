@@ -61,7 +61,8 @@ body{
   width:100%;
   height:72px;
   display:flex;
-  align-items:center;
+  justify-content:center; /* CENTRALIZA HORIZONTALMENTE */
+  align-items:center;     /* CENTRALIZA VERTICALMENTE */
   padding:0 28px;
   z-index:100;
   background:#FFFFFFE6;
@@ -69,11 +70,16 @@ body{
   box-shadow:0 2px 8px rgba(0,0,0,0.06);
 }
 
+
 #logoNav{
-  height:70px;
+  height:72px; /* tamanho maior que você pediu */
+  position:relative;
+  z-index:99999; /* garante que o clique funcione */
+  cursor:pointer;
   transition:transform .35s ease, filter .35s ease;
   filter:drop-shadow(0 3px 6px rgba(0,0,0,0.18));
 }
+
 
 #logoNav:hover{
   transform:perspective(600px) rotateX(8deg) scale(1.04);
