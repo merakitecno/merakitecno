@@ -57,13 +57,12 @@ slides.forEach((_, i) => {
   const dot = document.createElement("div");
 
   // Se existir letra → marcador com letra
-  const letter = letters[i] || "";
-
-  if (letter !== "") {
-    dot.classList.add("indicator"); // marcador médio
-    dot.textContent = letter;
+  if (i < letters.length) {
+    dot.classList.add("indicator");
+    dot.textContent = letters[i];
   } else {
-    dot.classList.add("indicator-default"); // marcador pequeno
+    // Marcadores extras → pequenos e azuis
+    dot.classList.add("indicator-default");
   }
 
   dot.addEventListener("click", () => {
@@ -74,6 +73,7 @@ slides.forEach((_, i) => {
 
   indicatorsContainer.appendChild(dot);
 });
+
 
 
 
