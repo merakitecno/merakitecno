@@ -53,6 +53,8 @@ const indicatorsContainer = document.getElementById("indicators");
 // Letras do nome da empresa
 const letters = ["M", "E", "R", "A", "K", "I"];
 
+const indicators = []; // armazenar todos os marcadores
+
 slides.forEach((_, i) => {
   const dot = document.createElement("div");
 
@@ -65,6 +67,8 @@ slides.forEach((_, i) => {
     dot.classList.add("indicator-default");
   }
 
+  indicators.push(dot);
+
   dot.addEventListener("click", () => {
     auto = false;
     index = i;
@@ -73,6 +77,18 @@ slides.forEach((_, i) => {
 
   indicatorsContainer.appendChild(dot);
 });
+
+// Atualiza o estado visual dos marcadores
+function updateIndicators(){
+  indicators.forEach((dot, i) => {
+    dot.classList.remove("active");
+
+    if (i === index) {
+      dot.classList.add("active");
+    }
+  });
+}
+
 
 
 
