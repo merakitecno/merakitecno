@@ -14,7 +14,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* SPLASH */
 #splash {
   position: fixed; inset: 0; background: white;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -23,7 +22,6 @@ body {
 .splash-logo { width: 300px; max-width: 70vw; animation: fadeIn 1.2s forwards; }
 .splash-text { margin-top: 20px; color: var(--primary-blue); letter-spacing: 2px; text-transform: uppercase; font-size: 14px; }
 
-/* NAVBAR */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; height: 85px;
   background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
@@ -35,9 +33,7 @@ body {
   width: 100%; max-width: 1200px; padding: 0 30px;
 }
 #logoNav { height: 65px; cursor: pointer; transition: transform 0.3s; }
-#logoNav:hover { transform: scale(1.05); }
 
-/* VERSÍCULO NA NAVBAR */
 .header-quote {
   text-align: right; border-left: 2px solid var(--primary-blue);
   padding-left: 15px; margin-left: 20px;
@@ -45,13 +41,12 @@ body {
 .header-quote p { font-size: 13px; font-style: italic; color: #374151; line-height: 1.2; }
 .header-quote span { font-size: 10px; font-weight: 700; color: var(--primary-blue); text-transform: uppercase; }
 
-/* SLIDES */
 .slide {
   position: absolute; inset: 0; padding: 120px 10%;
   opacity: 0; transition: opacity 0.8s ease;
   display: flex; flex-direction: column; justify-content: center;
   background-size: cover; background-position: center;
-  background-color: rgba(0,0,0,0.65); background-blend-mode: darken;
+  background-color: rgba(0,0,0,0.75); background-blend-mode: darken;
 }
 .slide.active { opacity: 1; }
 
@@ -60,7 +55,6 @@ p, li { font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: #D1D5DB; mar
 ul { list-style: none; }
 ul li::before { content: "▹"; color: var(--primary-blue); margin-right: 10px; font-weight: bold; }
 
-/* INDICADORES (CORREÇÃO DE ALINHAMENTO) */
 #indicators {
   position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; gap: 10px; z-index: 10000;
@@ -79,7 +73,6 @@ ul li::before { content: "▹"; color: var(--primary-blue); margin-right: 10px; 
   background: var(--primary-blue); border-color: white; transform: scale(1.2);
 }
 
-/* WHATSAPP */
 #whatsButton {
   position: fixed; bottom: 30px; right: 30px; padding: 14px 24px;
   background: #25D366; color: white; border-radius: 50px;
