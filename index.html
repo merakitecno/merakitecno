@@ -20,9 +20,10 @@
     <div class="nav-content">
       <img id="logoNav" src="logo-meraki.png" alt="Meraki Logo">
       <div class="nav-links">
-          <span onclick="changeSlide(3)">Quem Somos</span>
-          <span onclick="changeSlide(7)">Tecnologias</span>
-          <span onclick="changeSlide(9)">Contato</span>
+          <span onclick="changeSlide(0)">Home</span>
+          <span onclick="changeSlide(2)">Especialidades</span>
+          <span onclick="changeSlide(3)">Clientes</span>
+          <span onclick="changeSlide(5)">Contato</span>
       </div>
       <div class="header-quote">
         <p>"Tudo o que fizerem, façam de todo o coração..."</p>
@@ -34,57 +35,73 @@
   <main id="slides-container">
     <div id="indicators"></div>
 
-    <section class="slide active" data-bg="https://images.unsplash.com/photo-1565608411388-e9301d674ce1?q=80&w=1920">
+    <section class="slide" data-bg="https://images.unsplash.com/photo-1565608411388-e9301d674ce1?q=80&w=1920">
       <div class="content-box">
-        <span class="tag">Soluções 360°</span>
+        <span class="tag">Engenharia de Automação</span>
         <h1>Sua produção não pode parar.</h1>
-        <p>Engenharia especializada em reduzir o downtime e garantir a máxima eficiência operacional do seu parque fabril.</p>
-        <button class="btn-primary" onclick="changeSlide(9)">Solicitar Diagnóstico</button>
+        <p>Soluções em PLC, IHM e SCADA focadas em continuidade produtiva e conformidade com a NR-12.</p>
+        <button class="btn-primary" onclick="changeSlide(5)">Diagnóstico Técnico</button>
       </div>
     </section>
 
-    <section class="slide" data-bg="https://images.unsplash.com/photo-1581092162384-8987c17d4717?q=80&w=1920">
+    <section class="slide" data-bg="https://images.unsplash.com/photo-1581091215367-9b6c00b3035a?q=80&w=1920">
       <div class="content-box">
-        <h2>Desafios da Indústria Moderna</h2>
+        <h2>Expertise Técnica</h2>
         <div class="grid-cards">
-            <div class="card"><h3>Downtime</h3><p>Perdas financeiras por máquinas paradas.</p></div>
-            <div class="card"><h3>Obsolescência</h3><p>Equipamentos sem suporte técnico.</p></div>
-            <div class="card"><h3>Segurança</h3><p>Riscos jurídicos e falta de NR-12.</p></div>
+            <div class="card"><h3>Siemens</h3><p>TIA Portal, S7-1200/1500, Sinamics.</p></div>
+            <div class="card"><h3>Rockwell</h3><p>Studio 5000, ControlLogix, Safety.</p></div>
+            <div class="card"><h3>Sistemas</h3><p>SCADA WinCC, SQL e integração SAP.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="slide" data-bg="https://images.unsplash.com/photo-1581092334088-4c4b1c4e6c9a?q=80&w=1920">
+    <section class="slide" data-bg="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=1920">
+      <div class="content-box wide-box">
+        <span class="tag">Social Proof</span>
+        <h2>Clientes que Confiam</h2>
+        <p>Presença em grandes players industriais com projetos de alta complexidade:</p>
+        <div class="clients-grid">
+            <div class="client-item">FORD</div>
+            <div class="client-item">AMBEV</div>
+            <div class="client-item">HEINEKEN</div>
+            <div class="client-item">GESTAMP</div>
+            <div class="client-item">MCPACK</div>
+            <div class="client-item">INTERTRIM</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-bg="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1920">
       <div class="content-box">
-        <h2>20 Anos de Autoridade</h2>
-        <p>A Meraki Tecnologia combina tradição e inovação para entregar projetos de alta complexidade em PLC, IHM e SCADA.</p>
-        <ul class="check-list">
-            <li>Especialistas Siemens & Rockwell</li>
-            <li>Certificação Safety de Software</li>
-            <li>Consultoria técnica estratégica</li>
+        <h2>Projetos Relevantes</h2>
+        <ul class="case-list">
+            <li><strong>AMBEV:</strong> Transferência de PET e ajustes em envasadoras Krones.</li>
+            <li><strong>FORD:</strong> Integração WinCC com banco de dados SQL e SAP.</li>
+            <li><strong>HEINEKEN:</strong> Adequação completa de segurança NR-12.</li>
+            <li><strong>GESTAMP:</strong> Integração de robôs Fanuc e Safety Siemens.</li>
         </ul>
       </div>
     </section>
 
-    <section class="slide" data-bg="https://images.unsplash.com/photo-159742324403d-119735966378?q=80&w=1920">
-      <div class="content-box tech-grid">
-        <h2>Domínio Tecnológico</h2>
-        <div class="tech-icons">
-            <div class="tech-item"><strong>Siemens</strong><span>TIA Portal / Sinamics</span></div>
-            <div class="tech-item"><strong>Rockwell</strong><span>Studio 5000 / GuardLogix</span></div>
-            <div class="tech-item"><strong>Especialidades</strong><span>NR-12 / SCADA / SAP Integration</span></div>
-        </div>
+    <section class="slide" data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920">
+      <div class="content-box">
+        <h2>Resultado para sua Indústria</h2>
+        <ul class="check-list">
+            <li>Redução drástica de paradas inesperadas</li>
+            <li>Conformidade total com normas de segurança</li>
+            <li>Tranquilidade técnica para gestores</li>
+        </ul>
       </div>
     </section>
 
     <section class="slide" data-bg="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1920">
       <div class="content-box contact-footer">
-        <h2>Vamos elevar o nível da sua operação?</h2>
-        <p>Agende uma reunião técnica com nossos especialistas.</p>
-        <div class="contact-info">
+        <h2>Solicite um diagnóstico</h2>
+        <p>Analise a sua operação com quem entende de hardware e software industrial.</p>
+        <div class="contact-card">
             <p><strong>Larissa Adma Martins Augusto</strong></p>
-            <p>larissa.adma@merakitecno.com.br</p>
-            <a href="https://wa.me/5512974094442" class="whatsapp-link">Falar via WhatsApp</a>
+            <p>📧 larissa.adma@merakitecno.com.br</p>
+            <a href="https://wa.me/5512974094442" class="btn-whatsapp">Falar pelo WhatsApp</a>
         </div>
       </div>
     </section>
