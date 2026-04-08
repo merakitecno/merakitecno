@@ -1,63 +1,99 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = document.querySelectorAll(".slide");
-  const splash = document.getElementById("splash");
-  const whatsButton = document.getElementById("whatsButton");
-  const indicatorsContainer = document.getElementById("indicators");
-  
-  let index = 0;
-  let auto = false;
+:root {
+  --primary-blue: #1A73E8;
+  --dark-bg: #0F1B2B;
+  --text-gray: #E5E7EB;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  // Função para aplicar o fundo
-  function applyBackgrounds() {
-    slides.forEach(slide => {
-      const url = slide.getAttribute("data-bg");
-      if (url) {
-        slide.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('${url}')`;
-      }
-    });
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  applyBackgrounds();
+body {
+  overflow: hidden;
+  background: var(--dark-bg);
+  color: var(--text-gray);
+  font-family: 'Inter', sans-serif;
+}
 
-  splash.addEventListener("click", () => {
-    splash.style.opacity = "0";
-    setTimeout(() => {
-      splash.style.display = "none";
-      auto = true;
-      whatsButton.style.opacity = "1";
-      whatsButton.style.pointerEvents = "auto";
-    }, 600);
-  });
+/* SPLASH SCREEN */
+#splash {
+  position: fixed; inset: 0; background: white;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  z-index: 999999; cursor: pointer; transition: opacity 0.8s ease;
+}
+.splash-logo { width: 300px; max-width: 70vw; animation: fadeIn 1.2s forwards; }
+.splash-text { margin-top: 20px; color: var(--primary-blue); letter-spacing: 2px; text-transform: uppercase; font-size: 14px; }
 
-  const pattern = ["", "", "M", "E", "R", "A", "K", "I", "", ""];
-  const indicators = [];
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; height: 85px;
+  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+  display: flex; justify-content: center; z-index: 100;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.nav-content {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1200px; padding: 0 30px;
+}
+#logoNav { height: 65px; cursor: pointer; transition: transform 0.3s; }
 
-  pattern.forEach((char, i) => {
-    const dot = document.createElement("div");
-    dot.className = char === "" ? "indicator-default" : "indicator";
-    if (char !== "") dot.textContent = char;
-    dot.addEventListener("click", () => { auto = false; changeSlide(i); });
-    indicatorsContainer.appendChild(dot);
-    indicators.push(dot);
-  });
+/* CABEÇALHO VERSÍCULO */
+.header-quote {
+  text-align: right; border-left: 2px solid var(--primary-blue);
+  padding-left: 15px; margin-left: 20px;
+}
+.header-quote p { font-size: 13px; font-style: italic; color: #374151; line-height: 1.2; }
+.header-quote span { font-size: 10px; font-weight: 700; color: var(--primary-blue); text-transform: uppercase; }
 
-  function changeSlide(newIndex) {
-    index = (newIndex + slides.length) % slides.length;
-    slides.forEach(s => s.classList.remove("active"));
-    indicators.forEach(d => d.classList.remove("active"));
-    slides[index].classList.add("active");
-    indicators[index].classList.add("active");
-  }
+/* SLIDES */
+.slide {
+  position: absolute; inset: 0; padding: 120px 10%;
+  opacity: 0; transition: opacity 0.8s ease;
+  display: flex; flex-direction: column; justify-content: center;
+  background-size: cover; background-position: center;
+  background-repeat: no-repeat;
+  /* O fundo será aplicado via JS com o gradiente de escurecimento */
+}
+.slide.active { opacity: 1; }
 
-  changeSlide(0);
+h1, h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 5vw, 52px); margin-bottom: 20px; color: white; }
+p, li { font-size: clamp(16px, 2vw, 20px); line-height: 1.6; color: #D1D5DB; margin-bottom: 10px; }
+ul { list-style: none; }
+ul li::before { content: "▹"; color: var(--primary-blue); margin-right: 10px; font-weight: bold; }
 
-  setInterval(() => { if (auto && !document.hidden) changeSlide(index + 1); }, 6000);
+/* INDICADORES MERAKI */
+#indicators {
+  position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; z-index: 10000;
+}
+.indicator, .indicator-default {
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer; transition: var(--transition);
+  background: rgba(255,255,255,0.2); border: 2px solid transparent;
+}
+.indicator {
+  width: 36px; height: 36px; border-radius: 50%;
+  color: white; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px;
+}
+.indicator-default { width: 12px; height: 12px; border-radius: 50%; }
+.indicator.active, .indicator-default.active {
+  background: var(--primary-blue); border-color: white; transform: scale(1.2);
+}
 
-  window.addEventListener("wheel", (e) => {
-    auto = false;
-    if (e.deltaY > 0) changeSlide(index + 1);
-    else changeSlide(index - 1);
-  }, { passive: true });
+/* WHATSAPP */
+#whatsButton {
+  position: fixed; bottom: 30px; right: 30px; padding: 14px 24px;
+  background: #25D366; color: white; border-radius: 50px;
+  text-decoration: none; font-weight: 700; z-index: 9999;
+  opacity: 0; pointer-events: none; transition: var(--transition);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
 
-  document.getElementById("logoNav").addEventListener("click", () => { auto = false; changeSlide(0); });
-});
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media(max-width: 768px) {
+  .header-quote { display: none; }
+  .slide { text-align: center; align-items: center; padding: 80px 5%; }
+  #indicators { gap: 6px; }
+  .indicator { width: 28px; height: 28px; font-size: 11px; }
+  #whatsButton { bottom: 90px; right: 20px; }
+}
